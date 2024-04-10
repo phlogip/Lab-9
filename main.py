@@ -1,40 +1,41 @@
+def Decode(input):
+  new_pass = ''
+  for number in input:
+    if int(number) <= 2:
+      new_pass += str((int(number) + 7))
+    else:
+      new_pass += str((int(number) - 3))
+  return [new_pass, input]
+
 def encoder(password):
   new_pass = ''
   for number in password:
-    if int(number) >= 7:
-      new_pass += str((int(number)-7))
+    if int(number)+3 >= 7:
+      new_pass += str((int(number) - 7))
     else:
-      new_pass += str((int(number)+3))
+      new_pass += str((int(number) + 3))
   return new_pass
-  
-def Decode(input):
-  new_pass = ''
-  for i in range(len(input)):
-    if input[i] <= 2:
-      new_pass += input[i] + 7
-    else:
-      new_pass += input[i] - 3
-  return [new_pass, input]
 
 def menu():
-  print("Menu\n
-        -------------\n
-        1. Encode\n
-        2. Decode\n
-        3. Quit")
+  print("Menu")
+  print("-------------")
+  print("1. Encode")
+  print("2. Decode")
+  print("3. Quit")
 
 def main():
   while True:
     menu()
-    option = input("Please enter an option: )
+    option = int(input("Please enter an option: "))
     if option == 1:
-      pw = str(input("Please enter your password to encode: ))
-      encoded_pw = encoder(pw)
+      u_input = input("Please enter your password to encode: ")
+      encoder(u_input)
       print("Your password has been encoded and stored!")
-    if option == 2:
-      decoded_pw = Decode(encoded_pw)
-      print(f"The encoded password is {decoded_pw[0]}, and the original password is {decoded_pw[1]}.")
-    if option == 3:
+    elif option == 2:
+      value = Decode(u_input)
+      print(f"The encoded password is {value[0]}, and the original password is {value[1]}")
+    elif option == 3:
       break
 
-      
+if __name__ == "__main__":
+  main()
